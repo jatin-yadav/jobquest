@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ApiError } from "../utils/ApiError";
-import { asyncHandler } from "../utils/asyncHandler";
+import { asyncErrorHandler } from "../utils/asyncErrorHandler";
 import { User } from "../models/user.model";
 import { ApiResponse } from "../utils/ApiResponse";
 import { RegisterUserDto, LoginUserDto } from "../dtos/User.dto";
@@ -38,13 +38,17 @@ const generateAccessAndRefreshTokens = async (
   }
 };
 
-export const getUser = asyncHandler(async (req: Request, res: Response) => {
-  return res
-    .status(201)
-    .json(new ApiResponse(200, "createdUser", "User registered Successfully"));
-});
+export const getUser = asyncErrorHandler(
+  async (req: Request, res: Response) => {
+    return res
+      .status(201)
+      .json(
+        new ApiResponse(200, "createdUser", "User registered Successfully")
+      );
+  }
+);
 
-export const registerUser = asyncHandler(
+export const registerUser = asyncErrorHandler(
   async (req: Request<{}, {}, RegisterUserDto>, res: Response) => {
     const { firstName, lastName, email, username, password } = req.body;
 
@@ -90,7 +94,7 @@ export const registerUser = asyncHandler(
   }
 );
 
-export const loginUser = asyncHandler(
+export const loginUser = asyncErrorHandler(
   async (req: Request<{}, {}, LoginUserDto>, res: Response) => {
     const { email, username, password } = req.body;
 
@@ -143,4 +147,29 @@ export const loginUser = asyncHandler(
   }
 );
 
+export const logoutUser = asyncErrorHandler(
+  async (req: Request, res: Response) => {
+    await User.findByIdAndUpdate(
+      req.user?._id,
+      {
+        $unset: {
+          refreshToken: 1, // this removes the field from document
+        },
+      },
+      {
+        new: true,
+      }
+    );
 
+    const options = {
+      httpOnly: true,
+      secure: true,
+    };
+
+    return res
+      .status(200)
+      .clearCookie("accessToken", options)
+      .clearCookie("refreshToken", options)
+      .json(new ApiResponse(200, {}, "User logged Out"));
+  }
+);

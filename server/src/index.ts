@@ -12,6 +12,10 @@ connectDB()
       throw error;
     });
 
+    app.get("/", (req, res) => {
+      res.send("Welcome to job quest");
+    });
+
     app.listen(process.env.PORT || 8000, () => {
       console.log(`⚙️ Server is running at port : ${process.env.PORT}`);
     });
