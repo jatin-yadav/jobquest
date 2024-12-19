@@ -10,4 +10,4 @@ const asyncErrorHandler = (
   };
 };
 
-export { asyncErrorHandler };
+export default asyncErrorHandler;

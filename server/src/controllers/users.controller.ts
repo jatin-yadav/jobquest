@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
-import { ApiError } from "../utils/ApiError";
-import { asyncErrorHandler } from "../utils/asyncErrorHandler";
 import { User } from "../models/user.model";
-import { ApiResponse } from "../utils/ApiResponse";
 import { RegisterUserDto, LoginUserDto } from "../dtos/User.dto";
 import mongoose from "mongoose";
+import { ApiError, asyncErrorHandler, ApiResponse } from "../utils";
 
 const generateAccessAndRefreshTokens = async (
   userId: mongoose.Types.ObjectId
