@@ -19,10 +19,12 @@ app.use(cookieParser());
 //routes import
 import userRouter from "./routes/user.routes";
 import tpoicRouter from "./routes/topic.routes";
+import tagRouter from "./routes/tag.routes";
 
 //routes declaration
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/topics", tpoicRouter);
+app.use("/api/v1/tags", tagRouter);
 
 // http://localhost:8000/api/v1/users
 export { app };
