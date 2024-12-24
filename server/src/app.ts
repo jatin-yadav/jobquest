@@ -22,6 +22,7 @@ import tpoicRouter from "./routes/topic.routes";
 import tagRouter from "./routes/tag.routes";
 import qnaRouter from "./routes/qna.routes";
 import contentRouter from "./routes/content.routes";
+import linkRouter from "./routes/link.routes";
 
 //routes declaration
 app.use("/api/v1/users", userRouter);
@@ -29,6 +30,7 @@ app.use("/api/v1/topics", tpoicRouter);
 app.use("/api/v1/tags", tagRouter);
 app.use("/api/v1/qna", qnaRouter);
 app.use("/api/v1/content", contentRouter);
+app.use("/api/v1/share", linkRouter);
 
 // http://localhost:8000/api/v1/users
 export { app };
