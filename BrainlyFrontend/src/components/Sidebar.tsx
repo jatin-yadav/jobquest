@@ -1,6 +1,5 @@
-import { OpenBookIcon } from "../icons/OpenBookIcon"
-import { TweeterIcon } from "../icons/TweeterIcon"
-import { YoutubeIcon } from "../icons/YoutubeIcon"
+// import { TweeterIcon } from "../icons/TweeterIcon"
+// import SidebarItem from "./SidebarItem"
 
 const Sidebar = () => {
     return (
@@ -9,9 +8,7 @@ const Sidebar = () => {
                 <h1 className="">♾️ Second Brain</h1>
             </div>
             <div className="text-black">
-                <OpenBookIcon />
-                <TweeterIcon />
-                <YoutubeIcon />
+                {/* <SidebarItem icon={<TweeterIcon />} title="Tweeter" /> */}
             </div>
         </div>
     )
