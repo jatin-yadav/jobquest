@@ -4,9 +4,9 @@ interface SidebarItemProps {
 }
 const SidebarItem: React.FC<SidebarItemProps> = ({ icon, title }) => {
     return (
-        <div className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer">
+        <div className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer mt-2 pl-8">
             <span>{icon}</span>
-            <span>{title}</span>
+            <span className="font-semibold px-2">{title}</span>
         </div>
     )
 }
