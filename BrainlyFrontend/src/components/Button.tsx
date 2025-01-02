@@ -1,10 +1,11 @@
 import { ReactElement } from "react"
 
 interface ButtonProps {
-  variant?: "primary" | "secondary"
   text: string
-  onClick: () => void
+  variant?: "primary" | "secondary"
+  onClick?: () => void
   startIcon?: ReactElement
+  loading?: boolean
 }
 
 const variantClasses = {
@@ -14,11 +15,11 @@ const variantClasses = {
 
 const defaultStyles = "px-4 py-2 rounded-md font-light flex gap-2 items-center justify-center"
 
-const Button = ({ variant = "primary", text, startIcon, onClick }: ButtonProps) => {
+const Button = ({ variant = "primary", text, startIcon, onClick, loading }: ButtonProps) => {
   return (
-    <button className={`${variantClasses[variant]} ${defaultStyles}`} onClick={onClick}>
+    <button className={`${variantClasses[variant]} ${defaultStyles} ${loading ? "opacity-60" : ""}`} disabled={loading} onClick={onClick}>
       {startIcon && <span className="icon">{startIcon}</span>}
-      {text}
+      {loading ? "Loading..." : text}
     </button>
   )
 }
