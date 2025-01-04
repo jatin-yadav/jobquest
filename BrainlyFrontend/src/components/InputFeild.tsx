@@ -1,6 +1,6 @@
 import { RefObject } from 'react';
 
-const InputFeild = ({ refrance, placeholder, label }: { refrance: RefObject<HTMLInputElement>, placeholder: string, label: string }) => {
+const InputFeild = ({ refrance, placeholder, label }: { refrance?: RefObject<HTMLInputElement>, placeholder: string, label: string }) => {
     return (
         <div className="flex flex-col">
             <label htmlFor={label}>{label}</label>
