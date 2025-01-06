@@ -22,7 +22,11 @@ const CreateContentModal: React.FunctionComponent<CreateContentModalProps> = ({ 
             title: titleRef.current?.value
         }
 
-        const res = await axios.post(`${BACKEND_URL}/api/v1/content/create`, { ...data })
+        const res = await axios.post(`${BACKEND_URL}/api/v1/content/create`, { ...data }, {
+            headers: {
+                "Authorization": localStorage.getItem("token")
+            }
+        })
         alert(`${res?.data?.message}`)
         setLoading(false);
     }

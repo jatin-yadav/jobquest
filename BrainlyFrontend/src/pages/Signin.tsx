@@ -19,6 +19,8 @@ const Signin = () => {
         }
 
         const res = await axios.post(`${BACKEND_URL}/api/v1/users/login`, { ...data })
+        localStorage.setItem("token", res?.data?.data?.accessToken)
+        
         alert(`${res?.data?.message}`)
         setLoading(false);
     }
