@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { CloseIcon } from "../icons/CloseIcon";
 import Button from "./Button";
 import InputFeild from "./InputFeild";
-import { BACKEND_URL } from "../config";
+import { BACKEND_URL, contentTypes } from "../config";
 import axios from "axios";
 
 interface CreateContentModalProps {
@@ -41,6 +41,11 @@ const CreateContentModal: React.FunctionComponent<CreateContentModalProps> = ({ 
                 </div>
                 <InputFeild label="Title" placeholder="Enter title" refrance={titleRef} />
                 <InputFeild label="Link" placeholder="Enter title" refrance={linkRef} />
+                <select className="px-4 py-2 border rounded my-2 min-w-96">
+                    {contentTypes.map(({ type, label }) => (
+                        <option key={type} value={type}>{label}</option>
+                    ))}
+                </select>
                 <Button text="Submit Content" loading={loading} onClick={() => { createContent() }} />
             </div>
         </div>}</div>

@@ -1,8 +1,4 @@
-import { DocumentIcon } from "../icons/DocumentIcon"
-import { HashTagIcon } from "../icons/HashTagIcon"
-import { LinkIcon } from "../icons/LinkIcon"
-import { TweeterIcon } from "../icons/TweeterIcon"
-import { YoutubeIcon } from "../icons/YoutubeIcon"
+import { contentTypes } from "../config"
 import SidebarItem from "./SidebarItem"
 
 const Sidebar = () => {
@@ -12,11 +8,9 @@ const Sidebar = () => {
                 <h1 className="">♾️ Second Brain</h1>
             </div>
             <div className="text-gray-500">
-                <SidebarItem icon={<TweeterIcon />} title="Tweeter" />
-                <SidebarItem icon={<YoutubeIcon />} title="Youtube" />
-                <SidebarItem icon={<DocumentIcon />} title="Documents" />
-                <SidebarItem icon={<LinkIcon />} title="Links" />
-                <SidebarItem icon={<HashTagIcon />} title="Tags" />
+                {contentTypes.map(({ icon, label }) => (
+                    <SidebarItem icon={icon()} title={label} />
+                ))}
             </div>
         </div>
     )
