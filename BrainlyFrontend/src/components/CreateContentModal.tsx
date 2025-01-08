@@ -24,7 +24,11 @@ const CreateContentModal: React.FunctionComponent<CreateContentModalProps> = ({ 
             type: typeRef.current?.value
         }
 
-        console.log(data);
+        if (data.type === 'youtube') {
+            if (data.link) {
+                data.link = data.link.replace("watch?v=", "embed/")
+            }
+        }
 
         try {
             const res = await axios.post(`${BACKEND_URL}/api/v1/content/create`, { ...data }, {
@@ -33,6 +37,8 @@ const CreateContentModal: React.FunctionComponent<CreateContentModalProps> = ({ 
                 }
             })
             alert(`${res?.data?.message}`)
+            setLoading(false);
+            onClose();
         } catch (error) {
             alert(`${error}`)
             setLoading(false);
