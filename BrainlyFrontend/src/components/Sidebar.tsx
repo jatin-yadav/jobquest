@@ -9,7 +9,7 @@ const Sidebar = () => {
             </div>
             <div className="text-gray-500">
                 {contentTypes.map(({ icon, label }) => (
-                    <SidebarItem icon={icon()} title={label} />
+                    <SidebarItem key={label} icon={icon()} title={label} />
                 ))}
             </div>
         </div>

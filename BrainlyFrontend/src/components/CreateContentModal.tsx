@@ -13,22 +13,31 @@ const CreateContentModal: React.FunctionComponent<CreateContentModalProps> = ({ 
     const [loading, setLoading] = useState(false);
     const linkRef = useRef<HTMLInputElement>(null)
     const titleRef = useRef<HTMLInputElement>(null)
+    const typeRef = useRef<HTMLSelectElement>(null)
 
     const createContent = async () => {
         setLoading(true);
         const data = {
-            type: "tweet",
+            // type: "tweet",
             link: linkRef.current?.value,
-            title: titleRef.current?.value
+            title: titleRef.current?.value,
+            type: typeRef.current?.value
         }
 
-        const res = await axios.post(`${BACKEND_URL}/api/v1/content/create`, { ...data }, {
-            headers: {
-                "Authorization": localStorage.getItem("token")
-            }
-        })
-        alert(`${res?.data?.message}`)
-        setLoading(false);
+        console.log(data);
+
+        try {
+            const res = await axios.post(`${BACKEND_URL}/api/v1/content/create`, { ...data }, {
+                headers: {
+                    "Authorization": localStorage.getItem("token")
+                }
+            })
+            alert(`${res?.data?.message}`)
+        } catch (error) {
+            alert(`${error}`)
+            setLoading(false);
+        }
+
     }
 
     return (
@@ -41,7 +50,7 @@ const CreateContentModal: React.FunctionComponent<CreateContentModalProps> = ({ 
                 </div>
                 <InputFeild label="Title" placeholder="Enter title" refrance={titleRef} />
                 <InputFeild label="Link" placeholder="Enter title" refrance={linkRef} />
-                <select className="px-4 py-2 border rounded my-2 min-w-96">
+                <select ref={typeRef} className="px-4 py-2 border rounded my-2 min-w-96">
                     {contentTypes.map(({ type, label }) => (
                         <option key={type} value={type}>{label}</option>
                     ))}
