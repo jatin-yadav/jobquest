@@ -23,8 +23,8 @@ export const createShareAbleLink = asyncErrorHandler(
           .json(
             new ApiResponse(
               200,
-              `/api/v1/share/${link.hash}`,
-              "Here is your Shareable link"
+              `${link.hash}`,
+              "Here is your Shareable hash"
             )
           );
       }
@@ -38,8 +38,8 @@ export const createShareAbleLink = asyncErrorHandler(
         .json(
           new ApiResponse(
             200,
-            `/api/v1/share/${hashstring}`,
-            "Updated Shareable link Successfully"
+            `${hashstring}`,
+            "Updated Shareable hash Successfully"
           )
         );
     } else {
