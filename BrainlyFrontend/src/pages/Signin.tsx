@@ -13,7 +13,7 @@ const Signin = () => {
 
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const { login } = useAuth();
+    const { login, addToken } = useAuth();
     const navigate = useNavigate();
 
     const signin = async () => {
@@ -25,9 +25,10 @@ const Signin = () => {
 
         try {
             const res = await axios.post(`${BACKEND_URL}/api/v1/users/login`, { ...data })
-            localStorage.setItem("token", res?.data?.data?.accessToken)
-            login();
+            // localStorage.setItem("token", res?.data?.data?.accessToken)
             // alert(`${res?.data?.message}`)
+            addToken(res?.data?.data?.accessToken)
+            login();
             setLoading(false);
             navigate('/dashboard')
         } catch (error) {
