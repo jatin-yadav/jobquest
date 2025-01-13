@@ -3,6 +3,9 @@ import Button from '../components/Button'
 import { useRef, useState } from 'react';
 import axios from 'axios';
 import { BACKEND_URL } from '../config';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Signin = () => {
@@ -10,6 +13,8 @@ const Signin = () => {
 
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const signin = async () => {
         setLoading(true);
@@ -18,11 +23,17 @@ const Signin = () => {
             password: passwordRef.current?.value
         }
 
-        const res = await axios.post(`${BACKEND_URL}/api/v1/users/login`, { ...data })
-        localStorage.setItem("token", res?.data?.data?.accessToken)
-        
-        alert(`${res?.data?.message}`)
-        setLoading(false);
+        try {
+            const res = await axios.post(`${BACKEND_URL}/api/v1/users/login`, { ...data })
+            localStorage.setItem("token", res?.data?.data?.accessToken)
+            login();
+            // alert(`${res?.data?.message}`)
+            setLoading(false);
+            navigate('/dashboard')
+        } catch (error) {
+            alert(`${error}`)
+            setLoading(false);
+        }
     }
 
     return (
