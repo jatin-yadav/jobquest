@@ -1,9 +1,12 @@
+import HomeNavigation from "../components/HomeNavigation";
+
 const Home = () => {
     return (
-        <div>
+        <section>
+            <HomeNavigation openModel={() => { }} />
             <h1>Home page</h1>
             <p>This route has public access.</p>
-        </div>
+        </section>
     );
 };
 export default Home;

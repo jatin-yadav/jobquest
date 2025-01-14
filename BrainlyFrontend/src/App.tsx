@@ -5,6 +5,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "./utils/ProtectedRoutes";
+import Home from "./pages/Home";
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-
+            <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
@@ -21,9 +22,6 @@ function App() {
             <Route path="/share/:id" element={<SharedBrain />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
-            {/* <Dashboard /> */}
-            {/* <Signin /> */}
-            {/* <Signup /> */}
           </Routes>
         </BrowserRouter>
       </AuthProvider>
