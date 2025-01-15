@@ -55,17 +55,29 @@ const SharedBrain = () => {
     const paramsid = useParams().id;
 
     const getContent = async () => {
-        const response = await axios.get(`${BACKEND_URL}/api/v1/share/${paramsid}`, {
-            headers: {
-                "Authorization": localStorage.getItem("token")
-            }
-        })
-        console.log("response", response);
+        try {
 
-        setContents(response?.data?.data?.contentData)
+            const response = await axios.get(`${BACKEND_URL}/api/v1/share/${paramsid}`, {
+                headers: {
+                    "Authorization": localStorage.getItem("token")
+                }
+            })
+            setContents(response?.data?.data?.contentData)
+        } catch (error) {
+            alert(error)
+            setContents([])
+        }
     }
+
     useEffect(() => {
-        getContent();
+        getContent()
+        const interval = setInterval(() => {
+            getContent()
+        }, 60 * 1000)
+
+        return () => {
+            clearInterval(interval);
+        }
     }, [])
 
 

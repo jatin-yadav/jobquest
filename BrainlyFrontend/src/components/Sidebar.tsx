@@ -1,14 +1,32 @@
-import { contentTypes } from "../config"
+import { useState } from "react";
+import { BACKEND_URL, contentTypes } from "../config"
 import { useAuth } from "../context/AuthContext";
 import { LogoutIcon } from "../icons/LogoutIcon";
 import Button from "./Button"
 import SidebarItem from "./SidebarItem"
+import axios from "axios";
 
 const Sidebar = () => {
-    const { logout } = useAuth()
+    const [loading, setLoading] = useState(false);
+    const { logout, token } = useAuth()
     const handleLogout = () => {
         logout()
     };
+
+    const handleStopSharing = async () => {
+        try {
+            const res = await axios.post(`${BACKEND_URL}/api/v1/share/create`, { share: false }, {
+                headers: {
+                    "Authorization": token
+                }
+            })
+            alert(`${res?.data?.message}`)
+            setLoading(false);
+        } catch (error) {
+            alert(`${error}`)
+            setLoading(false);
+        }
+    }
     return (
         <div className="h-screen w-72 shadow-md">
             <div className="flex flex-col h-full">
@@ -20,7 +38,8 @@ const Sidebar = () => {
                         <SidebarItem key={label} icon={icon()} title={label} />
                     ))}
                 </div>
-                <div className="mt-auto py-4 flex justify-center items-center">
+                <div className="mt-auto py-4 flex flex-col gap-2 justify-center items-center">
+                    <Button variant="secondary" text="Stop sharing" onClick={() => { handleStopSharing() }} loading={loading} />
                     <Button text="Logout" onClick={() => { handleLogout() }} startIcon={<LogoutIcon />} />
                 </div>
             </div>

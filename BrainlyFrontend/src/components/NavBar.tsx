@@ -4,6 +4,7 @@ import { PlusIcon } from "../icons/PlusIcon"
 import { ShareIcon } from "../icons/ShareIcon"
 import { BACKEND_URL } from "../config";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 interface NavBarProps {
     openModel: () => void;
@@ -11,12 +12,13 @@ interface NavBarProps {
 
 const NavBar = ({ openModel }: NavBarProps) => {
     const [loading, setLoading] = useState(false);
+    const { token } = useAuth();
 
     const SharedBrain = async () => {
         try {
             const res = await axios.post(`${BACKEND_URL}/api/v1/share/create`, { share: true }, {
                 headers: {
-                    "Authorization": localStorage.getItem("token")
+                    "Authorization": token
                 }
             })
             alert(`go to: http://localhost:5173/share/${res?.data?.data}`)

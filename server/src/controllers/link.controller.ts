@@ -21,11 +21,7 @@ export const createShareAbleLink = asyncErrorHandler(
         return res
           .status(201)
           .json(
-            new ApiResponse(
-              200,
-              `${link.hash}`,
-              "Here is your Shareable hash"
-            )
+            new ApiResponse(200, `${link.hash}`, "Here is your Shareable hash")
           );
       }
       const hashstring: string = generateRandomHash(10);

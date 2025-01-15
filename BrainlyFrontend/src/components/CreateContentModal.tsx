@@ -4,6 +4,7 @@ import Button from "./Button";
 import InputFeild from "./InputFeild";
 import { BACKEND_URL, contentTypes } from "../config";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 interface CreateContentModalProps {
     onClose: () => void;
@@ -14,6 +15,7 @@ const CreateContentModal: React.FunctionComponent<CreateContentModalProps> = ({ 
     const linkRef = useRef<HTMLInputElement>(null)
     const titleRef = useRef<HTMLInputElement>(null)
     const typeRef = useRef<HTMLSelectElement>(null)
+    const { token } = useAuth();
 
     const createContent = async () => {
         setLoading(true);
@@ -33,7 +35,7 @@ const CreateContentModal: React.FunctionComponent<CreateContentModalProps> = ({ 
         try {
             const res = await axios.post(`${BACKEND_URL}/api/v1/content/create`, { ...data }, {
                 headers: {
-                    "Authorization": localStorage.getItem("token")
+                    "Authorization": token
                 }
             })
             alert(`${res?.data?.message}`)
