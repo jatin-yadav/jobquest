@@ -12,8 +12,8 @@ const Sidebar = () => {
     return (
         <div className="h-screen w-72 shadow-md">
             <div className="flex flex-col h-full">
-                <div className="w-full p-4 flex items-center justify-center gap-2 text-2xl font-bold">
-                    <h1 className="">♾️ Second Brain</h1>
+                <div className="w-full p-4 flex items-center justify-center gap-2 ">
+                    <h1 className="text-2xl font-bold">♾️ Second Brain</h1>
                 </div>
                 <div className="text-gray-500">
                     {contentTypes.map(({ icon, label }) => (

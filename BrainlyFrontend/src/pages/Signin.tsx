@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import axios from 'axios';
 import { BACKEND_URL } from '../config';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -40,9 +40,11 @@ const Signin = () => {
     return (
         <div className="h-screen w-screen bg-gray-600 flex justify-center items-center">
             <div className="bg-white p-4 rounded-lg flex flex-col gap-2">
+                <p className='text-sky-600 font-semibold uppercase text-center text-xl underline'>Signin</p>
                 <InputFeild label="Username" placeholder="Enter username" refrance={usernameRef} />
                 <InputFeild label="Password" placeholder="Enter Password" refrance={passwordRef} />
                 <Button text="Signin" loading={loading} onClick={() => { signin() }} />
+                <p className='text-center'>Don't have an account ? <Link to="/signup" className='text-sky-600 underline'>signup</Link></p>
             </div>
         </div>
     )
