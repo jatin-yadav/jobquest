@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "./utils/ProtectedRoutes";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import Questions from "./pages/Questions";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/share/:id" element={<SharedBrain />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
+            <Route path="/questions" element={<Questions />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
