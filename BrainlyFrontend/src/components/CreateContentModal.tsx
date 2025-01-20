@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { CloseIcon } from "../icons/CloseIcon";
 import Button from "./Button";
 import InputFeild from "./InputFeild";
-import { BACKEND_URL, contentTypes } from "../config";
+import { BACKEND_URL, brainContentTypes } from "../config";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
@@ -59,7 +59,7 @@ const CreateContentModal: React.FunctionComponent<CreateContentModalProps> = ({ 
                 <InputFeild label="Title" placeholder="Enter title" refrance={titleRef} />
                 <InputFeild label="Link" placeholder="Enter title" refrance={linkRef} />
                 <select ref={typeRef} className="px-4 py-2 border rounded my-2 min-w-96">
-                    {contentTypes.map(({ type, label }) => (
+                    {brainContentTypes.map(({ type, label }) => (
                         <option key={type} value={type}>{label}</option>
                     ))}
                 </select>

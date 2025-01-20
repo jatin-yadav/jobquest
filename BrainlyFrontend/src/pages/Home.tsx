@@ -15,7 +15,7 @@ const Home = () => {
             <div className="fixed w-full top-0">
                 <HomeNavigation />
             </div>
-            <div className="bg-gray-200 pt-20 container">
+            <div className="bg-gray-200 pt-20">
                 <div className="flex flex-col justify-center items-center">
                     <h1 className="text-6xl font-bold text-center px-48">Organize Your Digital Life and Unlock Your Creative Potential</h1>
                     <div className="py-5 mt-8">
@@ -23,7 +23,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-gray-200 pt-20 container">
+            <div className="bg-gray-200 pt-20">
                 <div className="flex flex-col justify-center items-center">
                     <h1 className="text-6xl font-bold text-center px-48">Organize Your Questions and Answers in a smarter way and Revise them in a Creative Way</h1>
                     <div className="py-5 mt-8">

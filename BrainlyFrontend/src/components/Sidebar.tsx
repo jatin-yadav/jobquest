@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BACKEND_URL, contentTypes } from "../config"
+import { BACKEND_URL, brainContentTypes, questionContentTypes } from "../config"
 import { useAuth } from "../context/AuthContext";
 import { LogoutIcon } from "../icons/LogoutIcon";
 import Button from "./Button"
@@ -8,7 +8,7 @@ import axios from "axios";
 
 const Sidebar = () => {
     const [loading, setLoading] = useState(false);
-    const { logout, token } = useAuth()
+    const { logout, token, currentDashboard } = useAuth()
     const handleLogout = () => {
         logout()
     };
@@ -34,7 +34,10 @@ const Sidebar = () => {
                     <h1 className="text-2xl font-bold">♾️ Second Brain</h1>
                 </div>
                 <div className="text-gray-500">
-                    {contentTypes.map(({ icon, label }) => (
+
+                    {currentDashboard === 'braindashboard' ? brainContentTypes.map(({ icon, label }) => (
+                        <SidebarItem key={label} icon={icon()} title={label} />
+                    )) : questionContentTypes.map(({ icon, label }) => (
                         <SidebarItem key={label} icon={icon()} title={label} />
                     ))}
                 </div>

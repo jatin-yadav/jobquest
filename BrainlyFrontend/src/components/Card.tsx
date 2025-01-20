@@ -1,7 +1,7 @@
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import { DeleteIcon } from "../icons/DeleteIcon";
 import { ShareIcon } from "../icons/ShareIcon";
-import { BACKEND_URL, contentTypes } from "../config";
+import { BACKEND_URL, brainContentTypes } from "../config";
 import axios from "axios";
 
 interface CardProps {
@@ -12,7 +12,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ title, link, type, contentId }) => {
-    const icon = contentTypes.filter((item) => (item.type === type))[0].icon;
+    const icon = brainContentTypes.filter((item) => (item.type === type))[0].icon;
 
     const deleteContent = async () => {
         try {
