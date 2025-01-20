@@ -6,7 +6,7 @@ import NavBar from "../components/NavBar"
 import Sidebar from "../components/Sidebar"
 import { useContent } from "../hooks/useContent";
 
-function Dashboard() {
+const BrainDashboard = () => {
 
   // const contentUrls: {
   //   type: 'youtube' | 'tweet',
@@ -72,4 +72,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default BrainDashboard

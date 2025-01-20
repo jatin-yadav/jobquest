@@ -13,7 +13,7 @@ const Signin = () => {
 
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const { login, addToken } = useAuth();
+    const { login, addToken, currentDashboard } = useAuth();
     const navigate = useNavigate();
 
     const signin = async () => {
@@ -30,7 +30,7 @@ const Signin = () => {
             addToken(res?.data?.data?.accessToken)
             login();
             setLoading(false);
-            navigate('/dashboard')
+            navigate(`/${currentDashboard}`)
         } catch (error) {
             alert(`${error}`)
             setLoading(false);

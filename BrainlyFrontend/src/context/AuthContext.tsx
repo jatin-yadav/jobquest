@@ -2,9 +2,11 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 interface AuthContextType {
     isAuthenticated: boolean;
     token?: string | null
+    currentDashboard?: string | null
     login: () => void;
     logout: () => void;
     addToken: (tokenValue: string) => void;
+    addcurrentDashboard: (tokenValue: string) => void;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -12,6 +14,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 // PROVIDER
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [token, setToken] = useState<string | null>(null)
+    const [currentDashboard, setCurrentDashboard] = useState<string | null>('braindashboard')
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -29,10 +32,17 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         localStorage.setItem('JWT', `${tokenValue}`);
     }
 
+    const addcurrentDashboard = (dashboard: string) => {
+        setCurrentDashboard(dashboard);
+        localStorage.setItem('dashboard', `${dashboard}`);
+    }
+
     useEffect(() => {
         const storedAuthState = localStorage.getItem('isAuthenticated');
         const storedToken = localStorage.getItem("JWT")
         if (storedAuthState === 'true') {
+            const storedDashboard = localStorage.getItem("dashboard")
+            setCurrentDashboard(storedDashboard)
             setIsAuthenticated(true);
             setToken(storedToken)
         }
@@ -44,7 +54,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout, token, addToken }}>
+        <AuthContext.Provider value={{ isAuthenticated, login, logout, token, addToken, currentDashboard, addcurrentDashboard }}>
             {children}
         </AuthContext.Provider>
     );

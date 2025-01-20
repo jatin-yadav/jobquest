@@ -1,5 +1,5 @@
 import { AuthProvider } from "./context/AuthContext";
-import Dashboard from "./pages/Dashboard";
+import BrainDashboard from "./pages/BrainDashboard";
 import SharedBrain from "./pages/SharedBrain";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
@@ -8,6 +8,7 @@ import { ProtectedRoute } from "./utils/ProtectedRoutes";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Questions from "./pages/Questions";
+import QuestionnaireDashboard from "./pages/QuestionnaireDashboard";
 
 function App() {
 
@@ -17,9 +18,13 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={
+            <Route path="/braindashboard" element={
               <ProtectedRoute>
-                <Dashboard />
+                <BrainDashboard />
+              </ProtectedRoute>} />
+            <Route path="/questionnairedashboard" element={
+              <ProtectedRoute>
+                <QuestionnaireDashboard />
               </ProtectedRoute>} />
             <Route path="/share/:id" element={<SharedBrain />} />
             <Route path="/signup" element={<Signup />} />
