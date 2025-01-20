@@ -1,6 +1,11 @@
+import { CodeIcon } from "./icons/CodeIcon";
 import { DocumentIcon } from "./icons/DocumentIcon";
+import { DropDownIcon } from "./icons/DropDownIcon";
 import { HashTagIcon } from "./icons/HashTagIcon";
 import { LinkIcon } from "./icons/LinkIcon";
+import { LongAnswerIcon } from "./icons/LongAnswerIcon";
+import { MultipleChoiceIcon } from "./icons/MultipleChoiceIcon";
+import { ShortAnswerIcon } from "./icons/ShortAnswerIcon";
 import { TweeterIcon } from "./icons/TweeterIcon";
 import { YoutubeIcon } from "./icons/YoutubeIcon";
 
@@ -14,10 +19,10 @@ export const brainContentTypes = [
   { type: "hashtag", label: "HashTagIcon", icon: HashTagIcon },
 ];
 export const questionContentTypes = [
-  { type: "dropdown", label: "Dropdowns", icon: TweeterIcon },
-  { type: "multipleChoice", label: "Multiple Choice", icon: YoutubeIcon },
-  { type: "shortAnswer", label: "Short Answer", icon: DocumentIcon },
-  { type: "longAnswer", label: "Long Answer", icon: LinkIcon },
-  { type: "code", label: "Code", icon: HashTagIcon },
+  { type: "dropdown", label: "Dropdowns", icon: DropDownIcon },
+  { type: "multipleChoice", label: "Multiple Choice", icon: MultipleChoiceIcon },
+  { type: "shortAnswer", label: "Short Answer", icon: ShortAnswerIcon },
+  { type: "longAnswer", label: "Long Answer", icon: LongAnswerIcon },
+  { type: "code", label: "Code", icon: CodeIcon },
   { type: "boolean", label: "Boolean", icon: HashTagIcon },
 ];
